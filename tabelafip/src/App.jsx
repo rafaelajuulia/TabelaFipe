@@ -10,14 +10,14 @@ function App() {
   const [modeloSelecionado, setModeloSelecionado] = useState("");
   const [anoSelecionado, setAnoSelecionado] = useState("");
 
-  // Buscar marcas ao carregar
+  //procurar as marcas
   useEffect(() => {
     fetch("https://parallelum.com.br/fipe/api/v1/carros/marcas")
       .then((res) => res.json())
       .then((data) => setMarcas(data));
   }, []);
 
-  // Buscar modelos ao escolher marca
+  //procurar modelos quando escolher a marca
   useEffect(() => {
     if (marcaSelecionada) {
       fetch(`https://parallelum.com.br/fipe/api/v1/carros/marcas/${marcaSelecionada}/modelos`)
@@ -26,7 +26,7 @@ function App() {
     }
   }, [marcaSelecionada]);
 
-  // Buscar anos ao escolher modelo
+  //procurar os anos quando escolher o modelo
   useEffect(() => {
     if (modeloSelecionado) {
       fetch(
@@ -37,7 +37,7 @@ function App() {
     }
   }, [modeloSelecionado]);
 
-  // Buscar preço final
+  //ver o preço final
   const buscarVeiculo = () => {
     fetch(
       `https://parallelum.com.br/fipe/api/v1/carros/marcas/${marcaSelecionada}/modelos/${modeloSelecionado}/anos/${anoSelecionado}`
